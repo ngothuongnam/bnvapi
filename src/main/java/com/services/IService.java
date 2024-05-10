@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface IService {
-    public List<Data> getAll();
+public interface IService<T> {
+    public List<T> getAll();
+    public int insertTable(T t);
 }

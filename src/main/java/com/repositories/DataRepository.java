@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class DataRepository implements IRepository{
+public class DataRepository implements IRepository<Data>{
     @Autowired
     private DatabaseConnector databaseConnector;
 
@@ -39,5 +39,28 @@ public class DataRepository implements IRepository{
             databaseConnector.closeConnection(conn);
         }
         return dataList;
+    }
+
+    @Override
+    public int insertTable(Data data) {
+        int result = 0;
+        Connection conn = databaseConnector.getConnection();
+        try {
+            String sql = "Insert into dbo.data(doi_tuong, linh_vuc, ky_du_lieu, don_vi_bao_cao, don_vi_nhan_bao_cao, data)" +
+                    "values(?, ?, ?, ?, ?, ?)";
+            PreparedStatement p = conn.prepareStatement(sql);
+            p.setString(1, data.getDoi_tuong());
+            p.setString(2, data.getLinh_vuc());
+            p.setString(3, data.getKy_du_lieu());
+            p.setString(4, data.getDon_vi_bao_cao());
+            p.setString(5, data.getDon_vi_nhan_bao_cao());
+            p.setString(6, data.getData());
+            result = p.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            databaseConnector.closeConnection(conn);
+        }
+        return result;
     }
 }

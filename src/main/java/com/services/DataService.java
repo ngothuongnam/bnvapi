@@ -8,12 +8,18 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class DataService implements IService{
+public class DataService implements IService<Data> {
     @Autowired
-    private IRepository iRepository;
+    private IRepository<Data> iRepository;
 
     @Override
     public List<Data> getAll() {
        return iRepository.getAll();
     }
+
+    @Override
+    public int insertTable(Data data) {
+        return iRepository.insertTable(data);
+    }
+
 }

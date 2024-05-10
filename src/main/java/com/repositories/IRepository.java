@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IRepository {
-    public List<Data> getAll();
+public interface IRepository<T> {
+    public List<T> getAll();
+    public int insertTable(T t);
 }
