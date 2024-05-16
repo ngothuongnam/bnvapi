@@ -25,7 +25,7 @@ public class DataController {
     @PostMapping("")
     public ResponseEntity<?> insertData(@RequestBody Data data){
         //push kafka
-//        kafkaProducerService.sendMessage(data);
+        kafkaProducerService.sendMessage(data);
 
         //push landing
         int result = iService.insertTable(data);

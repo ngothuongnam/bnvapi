@@ -17,21 +17,21 @@ import java.util.Map;
 
 @Configuration
 public class AppConfig {
-    @Value("${url}")
-    private String url;
 
-    @Value("${driver}")
-    private String driver;
+    private static final String URL = "jdbc:sqlserver://10.28.0.1;databaseName=staging_ops;encrypt=false;";
 
-    @Value("${user}")
-    private String user;
 
-    @Value("${password}")
-    private String password;
+    private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+
+
+    private static final String USER = "sa";
+
+
+    private static final String PASSWORD = "Dba#2023Bnv";
 
     @Bean
     public DatabaseConnector getConnector(){
-        return new DatabaseConnector(url, driver, user, password);
+        return new DatabaseConnector(URL, DRIVER, USER, PASSWORD);
     }
 
     @Bean
