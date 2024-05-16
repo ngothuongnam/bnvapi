@@ -18,7 +18,7 @@ import java.util.Map;
 @Configuration
 public class AppConfig {
 
-    private static final String URL = "jdbc:sqlserver://10.28.0.1;databaseName=staging_ops;encrypt=false;";
+    private static final String URL = "jdbc:sqlserver://10.28.0.1;databaseName=DBLanding;encrypt=false;";
     private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String USER = "sa";
     private static final String PASSWORD = "Dba#2023Bnv";

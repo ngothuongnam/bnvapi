@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/data")
+@RequestMapping("")
 public class DataController {
     @Autowired
     private IService<Data> iService;
@@ -17,12 +17,12 @@ public class DataController {
     @Autowired
     private KafkaProducerService kafkaProducerService;
 
-    @GetMapping("")
-    public ResponseEntity<?> getData() {
-        return ResponseEntity.status(HttpStatus.OK).body(iService.getAll());
-    }
+//    @GetMapping("")
+//    public ResponseEntity<?> getData() {
+//        return ResponseEntity.status(HttpStatus.OK).body(iService.getAll());
+//    }
 
-    @PostMapping("")
+    @PostMapping("/data")
     public ResponseEntity<?> insertData(@RequestBody Data data){
         //push kafka
         kafkaProducerService.sendMessage(data);
