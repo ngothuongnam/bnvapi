@@ -29,6 +29,8 @@ public class AppConfig {
 
     private static final String PASSWORD = "Dba#2023Bnv";
 
+    private static final String BOOTSTRAP_SERVER = "10.27.0.12:9092";
+
     @Bean
     public DatabaseConnector getConnector(){
         return new DatabaseConnector(URL, DRIVER, USER, PASSWORD);
@@ -37,7 +39,7 @@ public class AppConfig {
     @Bean
     public ProducerFactory<String, Data> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.27.0.12:9092");
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVER);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(configProps);
